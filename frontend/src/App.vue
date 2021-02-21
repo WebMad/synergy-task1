@@ -1,32 +1,38 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <router-view v-if="isReady" class="mx-auto mt-16"></router-view>
+    <p v-else>Загрузка...</p>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
 
-#nav {
-  padding: 30px;
-}
+import wsConnection from "./plugins/wsConnection";
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+export default {
+  name: 'App',
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  components: {
+  },
+
+  methods: {
+    async startConnection() {
+      await wsConnection.init()
+      return wsConnection
+    }
+  },
+
+  created() {
+    this.startConnection().then(() => {
+      this.isReady = true
+      wsConnection.send('sdsds').then((response) => {
+        console.log(response.name)
+      })
+    })
+  },
+
+  data: () => ({
+    isReady: false
+  }),
+};
+</script>
