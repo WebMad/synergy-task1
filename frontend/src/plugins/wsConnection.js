@@ -1,3 +1,5 @@
+import store from '../store/index'
+
 class WsConnection {
     constructor() {
         this.isReady = false
@@ -26,11 +28,17 @@ class WsConnection {
 
     send(packetName, data = {}) {
         const hash = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-        this.connection.send(JSON.stringify({
+        let obj2Send = {
             name: packetName,
             hash: hash,
             data: data
-        }));
+        }
+
+        if (store.getters['auth/isAuth']) {
+            obj2Send.token = store.getters['auth/getToken']
+        }
+
+        this.connection.send(JSON.stringify(obj2Send));
 
         return new Promise((resolve, reject) => {
             let timeout = setTimeout(() => {
@@ -40,7 +48,7 @@ class WsConnection {
                 message = JSON.parse(message.data)
                 if (message.hash === hash) {
                     clearTimeout(timeout)
-                    resolve(message)
+                    resolve(message.data)
                 }
             }
         })
