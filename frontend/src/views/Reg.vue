@@ -49,7 +49,7 @@
                         />
                     </v-col>
                 </v-row>
-                <v-btn @click="reg" type="submit" :disabled="sending" ref="regBtn" class="mt-3">Создать</v-btn>
+                <v-btn type="submit" :disabled="sending" ref="regBtn" class="mt-3">Создать</v-btn>
                 <router-link class="ml-3" to="/login">Уже есть аккаунт?</router-link>
             </v-form>
         </v-card-text>

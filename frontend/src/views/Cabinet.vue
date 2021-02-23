@@ -15,7 +15,7 @@
                               label="Старый пароль"></v-text-field>
                 <v-text-field type="password" :rules="passwordRules" v-model="newPassword" counter="32"
                               label="Новый пароль"></v-text-field>
-                <v-btn type="submit" @click="save">Изменить</v-btn>
+                <v-btn type="submit">Изменить</v-btn>
                 <router-link class="ml-3" to="/">На главную</router-link>
             </v-form>
         </v-card-text>

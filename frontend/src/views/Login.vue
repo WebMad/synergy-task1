@@ -19,7 +19,7 @@
                         :rules="loginRules"
                         type="password"
                 />
-                <v-btn type="submit" @click="loginSend" class="mt-3">Войти</v-btn><router-link class="ml-3" to="/reg">Нет аккаунта?</router-link>
+                <v-btn type="submit" class="mt-3">Войти</v-btn><router-link class="ml-3" to="/reg">Нет аккаунта?</router-link>
             </v-form>
         </v-card-text>
     </v-card>
