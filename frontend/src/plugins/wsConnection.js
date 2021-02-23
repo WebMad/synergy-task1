@@ -1,4 +1,5 @@
 import store from '../store/index'
+import wsConfig from '../../ws.config.js'
 
 class WsConnection {
     constructor() {
@@ -7,7 +8,7 @@ class WsConnection {
     }
 
     init() {
-        this.connection = new WebSocket('ws://127.0.0.1:8090');
+        this.connection = new WebSocket(`ws://${wsConfig.host}:${wsConfig.port}`);
 
         this.connection.onclose = () => {
             setTimeout(() => {
