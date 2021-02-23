@@ -25,9 +25,6 @@ export default {
   created() {
     this.startConnection().then(() => {
       this.isReady = true
-      wsConnection.send('sdsds').then((response) => {
-        console.log(response.name)
-      })
     })
   },
 
