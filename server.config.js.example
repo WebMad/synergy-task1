@@ -1,0 +1,10 @@
+module.exports = {
+    wsServer: {
+        host: '',
+        port: ''
+    },
+    httpServer: {
+        host: '',
+        port: '',
+    }
+}

@@ -1,13 +1,14 @@
 const webSocket = require('ws')
-const port = 8090
 const studentController = require('./controllers/student.controller.js')
 const Student = require("./models").students
+const wsConfig = require('../server.config').wsServer
 
 module.exports = function wsServer() {
     const server = new webSocket.Server({
-        port: port
+        port: wsConfig.port,
+        host: wsConfig.host
     }, () => {
-        console.log(`Websocket server started on port ${port}`)
+        console.log(`Websocket server started on port ${wsConfig.port}`)
     })
 
     server.on('connection', ws => {
